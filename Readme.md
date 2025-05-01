@@ -1,6 +1,7 @@
 Excel Files Comparison Tool
 
 This Python project provides a script to compare two Excel files from a given folder and generate a new Excel file containing only the differences. If there are no differences, the script prints a message and does not create an output file. It also displays the columns with differences in the console for easy identification.
+
 Features
 - Compares two .xlsx files in a specified folder.
 - Identifies cell-level differences and outputs them into a new file.
@@ -10,7 +11,9 @@ Features
 - Skips creating an output file if no differences are found and displays "No differences found."
 
 Prerequisites
+
 Before running the script, ensure you have the following installed:
+
 Software Requirements:
 - Python: Version 3.6 or higher.
 
@@ -49,13 +52,16 @@ Script Workflow
 
 
 Example Console Output
+
 Case: No Differences
+
 Comparing files:
 File 1: /path/to/your/folder/file1.xlsx
 File 2: /path/to/your/folder/file2.xlsx
 No differences found between the two files.
 
 Case: Differences Found
+
 Comparing files:
 File 1: /path/to/your/folder/file1.xlsx
 File 2: /path/to/your/folder/file2.xlsx
