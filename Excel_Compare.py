@@ -17,9 +17,14 @@ def generate_differences_for_all_cells(folder_path):
 
     print(f"Comparing files:\nFile 1: {file1}\nFile 2: {file2}")
 
+   
     # Read the data into DataFrames
     df1 = pd.read_excel(file1, dtype=str)  # Read everything as strings for uniformity
     df2 = pd.read_excel(file2, dtype=str)
+
+    df1 = df1.sort_values(by=list(df1.columns), ignore_index=True)
+    df2 = df2.sort_values(by=list(df2.columns), ignore_index=True)
+
 
     # Ensure both DataFrames have the same column names
     all_columns = df1.columns.union(df2.columns)  # Combine all columns
@@ -38,9 +43,10 @@ def generate_differences_for_all_cells(folder_path):
     # Create a DataFrame to store differences
     differences = pd.DataFrame(0, index=range(max_rows), columns=all_columns)
 
-    # Compare cell by cell
+    # Compare cell by cell and calculate differences
     for col in all_columns:
         differences[col] = df1[col].where(df1[col] != df2[col], other="0")
+        differences[col] = differences[col].mask(differences[col] != "0", pd.to_numeric(df1[col], errors='coerce') - pd.to_numeric(df2[col], errors='coerce'))
 
     # Check if there are no differences
     if differences.eq("0").all().all():
