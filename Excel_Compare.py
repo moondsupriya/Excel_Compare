@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill
 
 def generate_differences_for_all_cells(folder_path):
     # Find all Excel files in the folder
@@ -45,10 +47,6 @@ def generate_differences_for_all_cells(folder_path):
         print("No differences found between the two files.")
         return
 
-    # List columns with differences
-    columns_with_differences = [col for col in all_columns if not differences[col].eq("0").all()]
-    print(f"Columns with differences: {', '.join(columns_with_differences)}")
-
     # Define output file name as differences_only.xlsx
     output_file_name = "differences_only.xlsx"
     output_file = os.path.join(folder_path, output_file_name)
@@ -59,10 +57,20 @@ def generate_differences_for_all_cells(folder_path):
         print(f"Existing file '{output_file}' deleted.")
 
     # Write the differences to a new Excel file
-    with pd.ExcelWriter(output_file) as writer:
-        differences.to_excel(writer, index=False, sheet_name="Differences")
+    differences.to_excel(output_file, index=False, sheet_name="Differences")
 
-    print(f"The file containing all cell differences is saved as '{output_file}'.")
+    # Highlight cells with differences in yellow
+    wb = load_workbook(output_file)
+    ws = wb["Differences"]
+    yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+
+    for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=1, max_col=ws.max_column):
+        for cell in row:
+            if cell.value != "0":  # Highlight cells with differences
+                cell.fill = yellow_fill
+
+    wb.save(output_file)
+    print(f"The file with highlighted differences is saved as '{output_file}'.")
 
 # Example usage
 folder_path = input("Enter the folder path containing the Excel files: ")
