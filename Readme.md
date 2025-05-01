@@ -26,21 +26,21 @@ Before running the script, ensure you have the following installed:
 - **openpyxl**: For handling `.xlsx` files.
 
 To install the required libraries, run:
-```bash
+
 pip install pandas openpyxl
 
-Usage
+### Usage
 - Clone or download this project to your local machine.
 - Place at least two .xlsx files in the folder you want to analyze.
 - Run the script in a Python environment or terminal.
 
-Steps:
+### Steps:
 - Open your terminal or Python editor.
 - Run the script:python compare_excel_files.py
 
 - Enter the folder path when prompted:Enter the folder path containing the Excel files: /path/to/your/folder
 
-Script Workflow
+### Script Workflow
 - File Selection:- The script scans the specified folder for .xlsx files.
 - If fewer than two files are found, it raises an error.
 
@@ -56,7 +56,7 @@ Script Workflow
 - Skips creating the output file if no differences are found.
 
 
-Example Console Output
+### Example Console Output
 
 Case: No Differences
 
@@ -73,7 +73,7 @@ File 2: /path/to/your/folder/file2.xlsx
 Columns with differences: Column1, Column3
 The file containing all cell differences is saved as '/path/to/your/folder/differences_only.xlsx'.
 
-Output File
+### Output File
 
 If differences are found, the script generates an Excel file named differences_only.xlsx in the specified folder. 
 
@@ -82,12 +82,12 @@ This file includes:
 - "0" for identical cells.
 - The value from the first file for mismatched cells.
 
-Notes
+### Notes
 
 - The script assumes that the first two .xlsx files in the folder are the ones to be compared.
 - Only .xlsx files are supported.
 
-License
+### License
 
 This project is open-source and available for personal and commercial use.
 
