@@ -69,16 +69,21 @@ Columns with differences: Column1, Column3
 The file containing all cell differences is saved as '/path/to/your/folder/differences_only.xlsx'.
 
 Output File
-If differences are found, the script generates an Excel file named differences_only.xlsx in the specified folder. This file includes:
+
+If differences are found, the script generates an Excel file named differences_only.xlsx in the specified folder. 
+
+This file includes:
 - Column headers from the input files.
 - "0" for identical cells.
 - The value from the first file for mismatched cells.
 
 Notes
+
 - The script assumes that the first two .xlsx files in the folder are the ones to be compared.
 - Only .xlsx files are supported.
 
 License
+
 This project is open-source and available for personal and commercial use.
 
 
